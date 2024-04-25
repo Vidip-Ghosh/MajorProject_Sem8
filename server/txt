@@ -1,0 +1,19 @@
+# features = [data['Airline'], data['Date_of_Journey'], data['Source'], data['Destination'], data['Total_Stops']]
+    # print("Features: ", features)
+
+    # features_array = np.array(features).reshape(1, -1)
+    # print("Features array: ", features_array)
+
+    # return features_array
+
+    # data['Source'] = labelencoder.fit_transform(data['Source'])
+    # data['Destination'] = labelencoder.fit_transform(data['Destination'])
+    # data['Date_of_Journey'] = labelencoder.fit_transform(data['Date_of_Journey'])
+    # data['Total_Stops'] = int(data['Total_Stops'])
+    # features = [3, data['Date_of_Journey'], data['Source'], data['Destination'], data['Total_Stops']]
+    # print("Features: ",features)
+    # features_array = np.array(features, dtype=object).reshape(1, -1)
+    # print("Features array: ",features_array)
+    # prediction = model.predict(features_array)
+    # print("Predicted Fare: ", prediction)
+    # return prediction

@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Form
 from models.details import FlightDetails
 import uvicorn
 

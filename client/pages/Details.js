@@ -6,8 +6,8 @@ const Details = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
-  const [departureDate, setDepartureDate] = useState("");
-  const [arrivalDate, setArrivalDate] = useState("");
+  const [departureDate, setDepartureDate] = useState(Date());
+  const [arrivalDate, setArrivalDate] = useState(Date());
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -24,9 +24,10 @@ const Details = () => {
 
   const postData = async () => {
     try {
-      const data = await fetch("http://127.0.0.1:8000/predict", {
+      const data = await fetch("http://10.0.2.2:8000/predict", {
         method: "POST",
         headers: {
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -36,6 +37,7 @@ const Details = () => {
           arrivalDate: arrivalDate,
         }),
       });
+      console.log(data.json());
     } catch (error) {
       console.log(error);
     }
@@ -48,6 +50,7 @@ const Details = () => {
         mode="date"
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
+        onChange={setDepartureDate}
       />
       <Button title="Arrival Date" onPress={showDatePicker} />
       <DateTimePickerModal
@@ -55,6 +58,7 @@ const Details = () => {
         mode="date"
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
+        onChange={setArrivalDate}
       />
       <TextInput placeholder="Source" value={source} onChangeText={setSource} />
       <TextInput
