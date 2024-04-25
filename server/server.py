@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_cors import CORS
 import pickle
 import numpy as np
@@ -24,5 +24,30 @@ def predict():
     print("Prediction: ",prediction)
     return str(prediction[0])
 
+@app.route('/')
+def prediction(): 
+    return render_template('index.html')
+
+@app.route("/form",methods=['POST'])
+def predict_price():
+    if request.method == 'POST':
+        airline = request.form['airline']
+        source = request.form['source']
+        destination = request.form['destination']
+        totalstops = request.form['totalstops']
+        date = request.form['date']
+    
+    features = [source, destination, totalstops, date, airline]
+    print("Features: ",features)
+    # Label Encoding
+    le = LabelEncoder()
+    features_encoded = le.fit_transform(features)
+    features_encoded = np.array(features_encoded).reshape(1,-1)
+    print("Features after label encoding: ",features_encoded)
+    # Making prediction
+    prediction = model.predict(features_encoded)
+    
+    return str(prediction[0])
+
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
