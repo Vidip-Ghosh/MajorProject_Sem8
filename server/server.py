@@ -46,8 +46,7 @@ def predict_price():
     print("Features after label encoding: ",features_encoded)
     # Making prediction
     prediction = model.predict(features_encoded)
-    
-    return str(prediction[0])
-
+    print("Prediction: ",prediction)
+    return render_template('index.html', prediction_text=f"Predicted Flight Price: {prediction[0]:.2f}")
 if __name__ == '__main__':
     app.run(debug=True)

@@ -57,6 +57,11 @@
       input[type="submit"]:hover {
         background-color: #0056b3;
       }
+      #price {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 24px;
+      }
     </style>
   </head>
 
@@ -115,5 +120,8 @@
         value="Predict Flight Price"
       />
     </form>
+    {% if prediction_text %}
+    <h2 id="price">{{ prediction_text }}</h2>
+    {% endif %}
   </body>
 </html>
